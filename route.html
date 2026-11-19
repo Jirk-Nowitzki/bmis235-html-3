@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+  Author: YOUR NAME
+  GU username: YOUR-GU-USERNAME
+  Course: BMIS 235 - HTML-3
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="YOUR NAME">
+<title>Route</title>
+
+<!-- this one line connects the page to the stylesheet -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== MENU ============================================================
+     The menu is four links. Each link wraps an image instead of words.
+     Build it once on this page, check that every link works,
+     then copy the whole <nav> block and paste it over the menu on the
+     other three pages, so every page has the exact same menu.
+     ===================================================================== -->
+<nav>
+    <a href="index.html"><img src="img/home.png" alt="Home"></a>
+    <a href="route.html"><img src="img/route.png" alt="Route"></a>
+    <a href="parks.html"><img src="img/parks.png" alt="Parks"></a>
+    <a href="expenses.html"><img src="img/expenses.png" alt="Expenses"></a>
+</nav>
+
+<h1>The Route</h1>
+<p>Washington → Oregon → California → Nevada → Utah → Arizona → Colorado → Idaho → Montana → back to Washington. The orange line is our drive. S is where we start and finish (Seattle), and the numbers are the park stops.</p>
+
+<!-- Simple map: each state is a plain shape, the orange line is the route -->
+<svg class="map" viewBox="0 0 411 427" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of the road trip route through the western United States">
+    <!-- states on our route -->
+    <g fill="#cfe3cf" stroke="#2e5d34" stroke-width="1.5">
+        <polygon points="15,41 41,28 145,28 145,94 112,94 27,88 25,61"/>
+        <polygon points="27,88 112,94 145,94 145,182 20,182 25,138"/>
+        <polygon points="20,182 95,182 95,248 187,336 185,386 144,391 85,347 52,281 24,217"/>
+        <polygon points="95,182 196,182 196,309 187,336 95,248"/>
+        <polygon points="145,28 162,28 162,52 190,80 214,102 247,127 247,182 145,182 145,138 154,105 145,94"/>
+        <polygon points="162,28 366,28 366,116 247,116 247,127 214,102 190,80 162,52"/>
+        <polygon points="196,182 247,182 247,204 281,204 281,292 196,292"/>
+        <polygon points="281,204 400,204 400,292 281,292"/>
+        <polygon points="196,292 281,292 281,416 247,416 183,391 187,336 196,309"/>
+    </g>
+    <!-- Wyoming: we do not stop there -->
+    <polygon points="247,116 366,116 366,204 247,204" fill="#ece8dc" stroke="#999999" stroke-width="1.5"/>
+
+    <!-- state names -->
+    <g font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#555555" text-anchor="middle">
+        <text x="115" y="64">WA</text>
+        <text x="95" y="135">OR</text>
+        <text x="140" y="360">CA</text>
+        <text x="150" y="215">NV</text>
+        <text x="175" y="102">ID</text>
+        <text x="300" y="75">MT</text>
+        <text x="305" y="165">WY</text>
+        <text x="238" y="225">UT</text>
+        <text x="360" y="268">CO</text>
+        <text x="240" y="375">AZ</text>
+    </g>
+
+    <!-- the route: Seattle, then stops 1 through 13, then back to Seattle -->
+    <polyline points="56,58 65,75 59,161 69,215 102,275 119,303 193,248 213,285 229,312 272,254 338,218 205,150 202,34 75,34 56,58"
+              fill="none" stroke="#d9822b" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- stops -->
+    <g font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">
+        <circle cx="56" cy="58" r="9" fill="#8a4b0f"/><text x="56" y="62">S</text>
+        <circle cx="65" cy="75" r="9" fill="#2e5d34"/><text x="65" y="79">1</text>
+        <circle cx="59" cy="161" r="9" fill="#2e5d34"/><text x="59" y="165">2</text>
+        <circle cx="69" cy="215" r="9" fill="#2e5d34"/><text x="69" y="219">3</text>
+        <circle cx="102" cy="275" r="9" fill="#2e5d34"/><text x="102" y="279">4</text>
+        <circle cx="119" cy="303" r="9" fill="#2e5d34"/><text x="119" y="307">5</text>
+        <circle cx="193" cy="248" r="9" fill="#2e5d34"/><text x="193" y="252">6</text>
+        <circle cx="213" cy="285" r="9" fill="#2e5d34"/><text x="213" y="289">7</text>
+        <circle cx="229" cy="312" r="9" fill="#2e5d34"/><text x="229" y="316">8</text>
+        <circle cx="272" cy="254" r="9" fill="#2e5d34"/><text x="272" y="258">9</text>
+        <circle cx="338" cy="218" r="9" fill="#2e5d34"/><text x="338" y="222">10</text>
+        <circle cx="205" cy="150" r="9" fill="#2e5d34"/><text x="205" y="154">11</text>
+        <circle cx="202" cy="34" r="9" fill="#2e5d34"/><text x="202" y="38">12</text>
+        <circle cx="75" cy="34" r="9" fill="#2e5d34"/><text x="75" y="38">13</text>
+    </g>
+</svg>
+<p class="note">The map is a simple sketch, not exact. Green states are on our route. Wyoming (gray) is just a drive-through.</p>
+
+<h2>The drives</h2>
+<table>
+    <tr>
+        <th>Leg</th>
+        <th>From → To</th>
+        <th>Miles (about)</th>
+    </tr>
+    <tr><td>1</td><td>Seattle, WA → Mount Rainier, WA</td><td>100</td></tr>
+    <tr><td>2</td><td>Mount Rainier → Crater Lake, OR</td><td>400</td></tr>
+    <tr><td>3</td><td>Crater Lake → Lassen Volcanic, CA</td><td>250</td></tr>
+    <tr><td>4</td><td>Lassen Volcanic → Yosemite, CA</td><td>350</td></tr>
+    <tr><td>5</td><td>Yosemite → Sequoia &amp; Kings Canyon, CA</td><td>200</td></tr>
+    <tr><td>6</td><td>Sequoia &amp; Kings Canyon → Great Basin, NV</td><td>650</td></tr>
+    <tr><td>7</td><td>Great Basin → Zion, UT</td><td>270</td></tr>
+    <tr><td>8</td><td>Zion → Grand Canyon, AZ</td><td>300</td></tr>
+    <tr><td>9</td><td>Grand Canyon → Arches, UT</td><td>400</td></tr>
+    <tr><td>10</td><td>Arches → Rocky Mountain, CO</td><td>400</td></tr>
+    <tr><td>11</td><td>Rocky Mountain → Craters of the Moon, ID</td><td>800</td></tr>
+    <tr><td>12</td><td>Craters of the Moon → Glacier, MT</td><td>450</td></tr>
+    <tr><td>13</td><td>Glacier → North Cascades, WA</td><td>700</td></tr>
+    <tr><td>14</td><td>North Cascades → Seattle, WA</td><td>120</td></tr>
+    <tr><td></td><td><b>Total</b></td><td><b>5,390</b></td></tr>
+</table>
+<p class="note">Miles are rough estimates. I will check each leg on Google Maps before we leave.</p>
+
+<!-- Footer: fill in your name -->
+<footer>Built by YOUR NAME &middot; BMIS 235</footer>
+
+</body>
+</html>

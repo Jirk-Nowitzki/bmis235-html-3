@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="author" content="YOUR NAME">
-<title>Home</title>
+<title>National Parks Road Trip</title>
 
 <!-- this one line connects the page to the stylesheet -->
 <link rel="stylesheet" href="styles.css">
@@ -23,20 +23,156 @@
      ===================================================================== -->
 <nav>
     <a href="index.html"><img src="img/home.png" alt="Home"></a>
-    <a href="page1.html"><img src="img/page1.png" alt="Page 1"></a>
-    <a href="page2.html"><img src="img/page2.png" alt="Page 2"></a>
-    <a href="page3.html"><img src="img/page3.png" alt="Page 3"></a>
+    <a href="route.html"><img src="img/route.png" alt="Route"></a>
+    <a href="parks.html"><img src="img/parks.png" alt="Parks"></a>
+    <a href="expenses.html"><img src="img/expenses.png" alt="Expenses"></a>
 </nav>
 
-<h1>Home</h1>
-<p>This is the home page. It introduces your idea and points to the other three pages.</p>
-<p>Write about your idea here.</p>
+<h1>National Parks Road Trip</h1>
+<p>This site is my plan for a 21-day road trip through the West. We start in Washington, drive down through California, cut across Nevada, Utah and Arizona, head over to Colorado, then go up through Idaho and Montana and finish back in Washington. That is about 5,400 miles and 13 stops.</p>
+<p><b>Route:</b> a map of the whole trip and how far each drive is. <b>Parks:</b> the parks we will visit and what we want to do at each one. <b>Expenses:</b> how much the trip should cost.</p>
+<p>Click a stop below to see a fun fact about it.</p>
 
 <!-- ===== SHOWCASE ======================================================
      This box is empty on purpose. In Part 7 you paste an interactive
      graphic BETWEEN the opening <div> and the closing </div> below.
      ===================================================================== -->
-<div class="showcase"></div>
+<div class="showcase">
+<!-- HTML: a row of buttons (made by the script) and a box that shows the info -->
+<div class="stop-buttons" id="stopButtons"></div>
+<div class="stop-info" id="stopInfo"></div>
+
+<!-- CSS: every rule starts with .showcase so it only changes this box -->
+<style>
+    .showcase {
+        border: 2px solid #2e5d34;
+        border-radius: 8px;
+        background-color: #ffffff;
+        padding: 12px;
+        margin: 20px auto;
+        max-width: 600px;
+        box-sizing: border-box;
+    }
+    .showcase .stop-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+    .showcase .stop-btn {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #e9e1cc;
+        color: #2e5d34;
+        border: 2px solid #2e5d34;
+        border-radius: 6px;
+        padding: 6px 10px;
+        cursor: pointer;
+    }
+    .showcase .stop-btn:hover {
+        background-color: #d9822b;
+        color: #ffffff;
+    }
+    .showcase .stop-btn.active {
+        background-color: #2e5d34;
+        color: #ffffff;
+    }
+    .showcase .stop-info {
+        min-height: 110px;
+        background-color: #faf6ec;
+        border-left: 6px solid #d9822b;
+        padding: 10px 14px;
+    }
+    .showcase .stop-count {
+        font-size: 13px;
+        color: #555555;
+    }
+    .showcase .stop-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #2e5d34;
+        margin: 4px 0;
+    }
+    .showcase .stop-fact {
+        font-size: 16px;
+        margin: 6px 0 0 0;
+    }
+</style>
+
+<!-- JavaScript: builds the buttons and changes the info box when you click one -->
+<script>
+    var stops = [
+        { num: 1, short: "Rainier", name: "Mount Rainier National Park (WA)",
+          fact: "Mount Rainier is 14,410 feet tall and has more glaciers than any other peak in the lower 48 states." },
+        { num: 2, short: "Crater Lake", name: "Crater Lake National Park (OR)",
+          fact: "At 1,943 feet deep, Crater Lake is the deepest lake in the United States." },
+        { num: 3, short: "Lassen", name: "Lassen Volcanic National Park (CA)",
+          fact: "Lassen is one of the only places in the world that has all four types of volcanoes." },
+        { num: 4, short: "Yosemite", name: "Yosemite National Park (CA)",
+          fact: "Yosemite Falls drops 2,425 feet, one of the tallest waterfalls in North America." },
+        { num: 5, short: "Sequoia", name: "Sequoia & Kings Canyon National Parks (CA)",
+          fact: "The General Sherman Tree is the largest tree on Earth by volume." },
+        { num: 6, short: "Great Basin", name: "Great Basin National Park (NV)",
+          fact: "Great Basin has bristlecone pine trees that are more than 3,000 years old." },
+        { num: 7, short: "Zion", name: "Zion National Park (UT)",
+          fact: "Zion Canyon is about 15 miles long and up to half a mile deep." },
+        { num: 8, short: "Grand Canyon", name: "Grand Canyon National Park (AZ)",
+          fact: "The Grand Canyon is 277 miles long and over a mile deep." },
+        { num: 9, short: "Arches", name: "Arches National Park (UT)",
+          fact: "Arches has more than 2,000 natural stone arches." },
+        { num: 10, short: "Rocky Mtn", name: "Rocky Mountain National Park (CO)",
+          fact: "Trail Ridge Road climbs to over 12,000 feet, so we will be driving above the treeline." },
+        { num: 11, short: "Craters", name: "Craters of the Moon National Monument (ID)",
+          fact: "Astronauts trained here in 1969 because the lava fields look like the moon." },
+        { num: 12, short: "Glacier", name: "Glacier National Park (MT)",
+          fact: "Glacier has more than 700 miles of hiking trails." },
+        { num: 13, short: "N. Cascades", name: "North Cascades National Park (WA)",
+          fact: "North Cascades has more than 300 glaciers." }
+    ];
+
+    var buttonBox = document.getElementById("stopButtons");
+    var infoBox = document.getElementById("stopInfo");
+
+    function showStop(index) {
+        var s = stops[index];
+        var buttons = buttonBox.getElementsByTagName("button");
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].className = "stop-btn";
+        }
+        buttons[index].className = "stop-btn active";
+
+        infoBox.innerHTML = "";
+        var count = document.createElement("div");
+        count.className = "stop-count";
+        count.textContent = "Stop " + s.num + " of 13";
+        var name = document.createElement("div");
+        name.className = "stop-name";
+        name.textContent = s.name;
+        var fact = document.createElement("div");
+        fact.className = "stop-fact";
+        fact.textContent = s.fact;
+        infoBox.appendChild(count);
+        infoBox.appendChild(name);
+        infoBox.appendChild(fact);
+    }
+
+    for (var i = 0; i < stops.length; i++) {
+        var btn = document.createElement("button");
+        btn.className = "stop-btn";
+        btn.textContent = stops[i].num + " " + stops[i].short;
+        btn.setAttribute("data-index", i);
+        btn.onclick = function () {
+            showStop(Number(this.getAttribute("data-index")));
+        };
+        buttonBox.appendChild(btn);
+    }
+
+    showStop(0);
+</script>
+</div>
+
+<p>Want to plan your own trip? Check out the <a href="https://www.nps.gov">National Park Service website</a>. Questions about my trip? <a href="mailto:YOUR-GU-USERNAME@zagmail.gonzaga.edu">Email me</a>.</p>
 
 <!-- Footer: fill in your name -->
 <footer>Built by YOUR NAME &middot; BMIS 235</footer>

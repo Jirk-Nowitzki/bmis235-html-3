@@ -1,17 +1,18 @@
 /* =====================================================================
-   styles.css  ·  YOUR BRAND
+   styles.css  ·  NATIONAL PARKS ROAD TRIP
    ---------------------------------------------------------------------
    This one file is your brand guide. Every page that links to it gets
    the same font, the same colors and the same spacing.
    Change a color here once, and every page changes.
 
-   Use the same font and colors you picked for your Excel menu images,
-   so the menu and the pages look like one brand.
+   Brand: font = Arial, main color = #2e5d34 (forest green),
+          accent color = #d9822b (orange)
+   These match the Excel menu images.
    ===================================================================== */
 
 body {
-    font-family: Georgia, "Times New Roman", serif;
-    background-color: #f4efe6;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #faf6ec;
     color: #2b2b2b;
     margin: 0;
     padding: 0 20px 40px 20px;
@@ -19,7 +20,7 @@ body {
 
 /* the menu at the top of every page */
 nav {
-    background-color: #2b5d8c;
+    background-color: #e9e1cc;
     padding: 14px;
     text-align: center;
 }
@@ -39,7 +40,7 @@ nav a {
 }
 
 h1 {
-    color: #2b5d8c;
+    color: #2e5d34;
     text-align: center;
     font-size: 40px;
 }
@@ -56,4 +57,69 @@ footer {
     font-size: 14px;
     color: #777777;
     margin-top: 40px;
+}
+
+/* ---------------------------------------------------------------------
+   Styles my content needs (tables, map, small notes)
+   --------------------------------------------------------------------- */
+
+h2 {
+    color: #2e5d34;
+    max-width: 600px;
+    margin: 30px auto 0 auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+th {
+    background-color: #2e5d34;
+    color: white;
+    text-align: left;
+}
+
+th, td {
+    border: 1px solid #2e5d34;
+    padding: 8px;
+}
+
+.map {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    margin: 20px auto;
+}
+
+p.note {
+    font-size: 14px;
+    color: #555555;
+}
+
+/* ---------------------------------------------------------------------
+   NEW STYLE 1: rounded menu buttons that fade when you hover
+   --------------------------------------------------------------------- */
+nav img {
+    border-radius: 8px;
+}
+
+nav a:hover img {
+    opacity: 0.75;
+}
+
+/* ---------------------------------------------------------------------
+   NEW STYLE 2: links turn orange on hover
+   --------------------------------------------------------------------- */
+a:hover {
+    color: #d9822b;
+}
+
+/* ---------------------------------------------------------------------
+   NEW STYLE 3: striped table rows
+   --------------------------------------------------------------------- */
+tr:nth-child(even) td {
+    background-color: #efe8d4;
 }
